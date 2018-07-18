@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     {% include "header.html" %}
+
+    <!-- Main -->
+    <div class="section section--main">
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="main-search">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class=" btn-outline-secondary form-control mr-sm-2" type="search"
+                               placeholder="Поиск по названию" aria-label="Search">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0 p-1 mar" type="submit">Найти</button>
+                        <a class="text-dark" data-toggle="collapse" href="#collapseExample" role="button"
+                           aria-expanded="false" aria-controls="collapseExample">
+                            Расширенный фильтр
+                        </a>
+
+                    </form>
+                    <div class="collapse" id="collapseExample">
+
+                        <div class=" card-body">
+                            <div class="colapce-card">
+                                <div class="m-2">
+                                    <span>Дата запуска "с"</span>
+                                    <input class="btn btn-outline-secondary" type="date" name="calendar"
+                                           value="2012-06-01" max="2012-06-04" min="2012-05-29">
+                                    <span>"по"</span>
+                                    <input class="btn btn-outline-secondary" type="date" name="calendar"
+                                           value="2012-06-01" max="2012-06-04" min="2012-05-29">
+
+                                    <span>Ответственный за запуск</span>
+
+                                    <select class="btn btn-outline-secondary" id="u249_input">
+                                        <option value="Сидоров">Сидоров</option>
+                                        <option value="Иванов">Иванов</option>
+                                        <option value="Петров">Петров</option>
+                                    </select>
+                                    <span>Результат</span>
+
+                                    <select class="btn btn-outline-secondary" id="u248_input">
+                                        <option value="Fail">Fail</option>
+                                        <option value="Pass">Pass</option>
+                                    </select>
+                                </div>
+                                <div class="m-2">
+
+
+                                    <span>Тест план</span>
+
+                                    <select class="btn btn-outline-secondary" id="u248_input">
+                                        <option value="Fail">Супер важный тест пла</option>
+                                        <option value="Pass">важный тест пла</option>
+                                    </select>
+                                    <span>Теги</span>
+                                    <input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid  p-0 border-line">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Дата последнего запуска</th>
+                            <th scope="col" colspan="2">Запустил</th>
+                            <th scope="col">Результат</th>
+                            <th scope="col" colspan="3"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for TestCase in testcase_list %}
+                            <tr>
+                                <th scope="row">{{ TestCase.id }}</th>
+                                <td><a class="text-dark" href="{% url 'case:view' TestCase.pk %}">{{ TestCase.name }}</a></td>
+                                <td>{{ TestCase.change }}</td>
+                                <td>
+                                    {{ TestCase.user }}
+                                </td>
+                                   <td><img class="prof-img--small" src="{% static "/img/u152.png" %}"></td>
+
+                                <td>
+                                    {% if  TestCase.status == "No_test" %}
+                                        <button type="button"
+                                                class="btn btn-secondary">{{ TestCase.status }}</button>
+                                    {% endif %}
+                                    {% if  TestCase.status == "Fail" %}
+                                        <button type="button" class="btn btn-warning">{{ TestCase.status }}</button>
+                                    {% endif %}
+                                    {% if  TestCase.status == "Done" %}
+                                        <button type="button" class="btn btn-success">{{ TestCase.status }}</button>
+                                    {% endif %}
+                                    {% if  TestCase.status == "Error" %}
+                                        <button type="button" class="btn btn-danger">{{ TestCase.status }}</button>
+                                    {% endif %}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--end Main -->
+{% endblock %}

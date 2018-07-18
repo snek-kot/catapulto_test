@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     {% include "header.html" %}
+    <!-- Main -->
+    <div class="section section--main">
+        <div class="container-fluid">
+            <div class="row p-5">
+                <div class="col-6">
+                    <span class="title title--main">Статистика тест планов</span>
+                </div>
+                <div class="col-6">
+						<span class="title "> 
+							
+							Выберите период "с"
+							<input type="date" name="calendar" value="2012-06-01" max="2012-06-04" min="2012-05-29">
+							"по"
+							<input type="date" name="calendar" value="2012-06-01" max="2012-06-04" min="2012-05-29">
+							<input type="submit" value="Применить">
+						</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+
+                    <div class="container form p-0  border-line">
+                        <table class="table ">
+                            <thead class="thead">
+                            <tr>
+                                <th scope="col">Запускалось более 1 месяца назад от выбранного периода</th>
+                                <th scope="col"><input type="text" size="2" value="{{ counted_all  }}" readonly></th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Название тест кейса</th>
+                                <th scope="col">Дата последнего запуска</th>
+                                <th scope="col">Статус запуска</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                           {% for TestPlan in testplan_list %}
+                                <tr>
+                                    <th scope="row">{{ TestPlan.id }}</th>
+                                    <td><a class="text-dark" href="{% url 'plan:view' TestPlan.pk %}">{{ TestPlan.name }}</a></td>
+                                    <td>{{ TestPlan.change }}</td>
+                                    <td>
+                                        {% if  TestPlan.status == "No_test" %}
+                                            <button type="button"
+                                                    class="btn btn-secondary">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Fail" %}
+                                            <button type="button" class="btn btn-warning">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Done" %}
+                                            <button type="button" class="btn btn-success">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Error" %}
+                                            <button type="button" class="btn btn-danger">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-6">
+
+                    <div class="container form p-0  border-line">
+                        <table class="table">
+                            <thead class="thead">
+                            <tr>
+                                <th scope="col">Запускались за выбранный период</th>
+                                <th scope="col  btn-secondary ">
+                                    <button type="button" class="btn btn-secondary ">всего</button>
+                                </th>
+                                <th scope="col"><input type="text" size="2" value="{{ counted_all }}" readonly> </th>
+                                <th scope="col">
+                                    <button type="button" class="btn btn-success">PASS</button>
+                                </th>
+                                <th scope="col"><input type="text" size="2" value="{{ counted_pass }}" readonly></th>
+                                <th scope="col">
+                                    <button type="button" class="btn btn-danger">FAIL</button>
+                                </th>
+                                <th scope="col"><input type="text" size="2" value="{{ counted_error }}" readonly></th>
+                            </tr>
+                            </thead>
+                        </table>
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Название тест кейса</th>
+                                <th scope="col">Дата последнего запуска</th>
+                                <th scope="col">Статус запуска</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for TestPlan in testplan_list %}
+                                <tr>
+                                    <th scope="row">{{ TestPlan.id }}</th>
+                                    <td><a class="text-dark" href="#">{{ TestPlan.name }}</a></td>
+                                    <td>{{ TestPlan.change }}</td>
+
+                                    <td>
+                                        {% if  TestPlan.status == "No_test" %}
+                                            <button type="button"
+                                                    class="btn btn-secondary">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Fail" %}
+                                            <button type="button" class="btn btn-warning">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Done" %}
+                                            <button type="button" class="btn btn-success">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Error" %}
+                                            <button type="button" class="btn btn-danger">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--end Main -->
+
+{% endblock %}

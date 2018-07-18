@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     {% include "header.html" %}
+		<!-- Main -->
+
+		<div class="section section--main">
+			<div class="container">
+				<div class="form-row align-self-center">
+					<label for="inputEmail4">Название тест кейса</label>
+					<input type="email" class="form-control" id="inputEmail4" placeholder="Имя">
+				</div>
+				<div class="form-group">
+					
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Preconditionна</span>	
+					</div>
+					<textarea class="edit test-descrition form-control" type="text" id="inputAddress" placeholder="Описание...">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+						• Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+
+						• Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+
+						• Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+
+						• Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+
+					Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."</textarea>
+					
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Description</span>	
+					</div>
+					<textarea class="edit test-descrition form-control" type="text" id="inputAddress" placeholder="Описание...">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+						• Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+
+						• Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+
+						• Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+
+						• Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+
+					Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."</textarea>
+
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Expected result(s)</span>	
+					</div>
+					<textarea class="edit test-descrition form-control" type="text" id="inputAddress" placeholder="Описание...">
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+						• Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+
+						• Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+
+						• Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+
+						• Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+
+					Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."</textarea>
+
+				</div>
+				<div class="container">
+					<span>Теги</span>
+					<div class="row ">
+						<div class="col-3">
+							<select class="btn btn-outline-secondary btn-block" id="u248_input">
+								<option value="Fail">Python</option>
+								<option value="Pass">Pass</option>
+							</select>						
+						</div>
+						<div class="col-2">
+							
+							<button class="btn btn-outline-secondary btn-block " type="submit">Добавить</button> 
+						</div>
+
+					</div>
+					<div class="form-group align-items-center">
+						<div class="row m-4 justify-content-left ">
+							<button type="submit" class="btn m-2 btn-success">Сохранить</button>
+							<button type="submit" class="btn m-2 btn-secondary">Отменить</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--end Main -->
+
+{% endblock %}

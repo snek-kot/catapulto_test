@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     {% include "header.html" %}
+		<!-- Main -->
+		<div class="section section--main">
+			<div class="container p-2">
+				<div class="form-row align-self-center">
+					<div class="col-6">
+						<span class="title title--main">{{ testcase.name }}</span>
+					</div>
+					<div class="col-6 ">
+						<div class="row justify-content-right">
+							<div class="col-auto">
+								<button type="button" class="btn btn-outline-info btn-block btn-lg">РЕДАКТИРОВАТЬ</button>
+							</div>
+
+							<div class="col-auto">
+								<button type="button" class="btn btn-outline-info btn-block btn-lg"s>ВЕРНУТЬСЯ В СПИСОК</button>
+							</div>		
+						</div>
+
+					</div>
+				</div>	
+				
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Preconditionна</span>	
+					</div>
+					<div>
+					{{ testcase.description }}
+                    </div>
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Description</span>	
+					</div>
+					<div>
+						{{ testcase.description }}
+                    </div>
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title tile--line">Expected result(s)</span>	
+					</div>
+					<div>
+					{{ testcase.status }}
+                    </div>
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-12">
+						<span class="title tile--line">Test plan</span>	
+					</div>
+					<div>{{ testcase.name }}</div>
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-12">
+						<span class="title tile--line">Tags</span>	
+					</div>
+					<div>{{ testcase.name }}</div>
+				</div>
+				<div class="form-row align-self-center m-2">
+					<div class="col-6">
+						<span class="title title--main">Лог запуска</span>	
+					</div>
+				</div>
+				<div class="form-row align-self-center border-line--min-of">
+					
+					<table class="table">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Дата последнего запуска</th>
+								<th scope="col" colspan="2">Запустил</th>
+								<th scope="col">Статус запуска</th>
+								<th scope="col" class="whith--limit-200">Комментарий</th>
+							</tr>
+						</thead>
+						<tbody >
+                         {% for LogCase in LogCase_list %}
+							<tr>
+								<td scope="row">{{ LogCase_list.id }}</td>
+								<td scope="row"><a class="text-dark" href="Test plan list.html">Иванов Иван</a></td>
+								<td><img class="prof-img--small" src="img/u152.png"></td>
+								<td>
+									<button type="button" class="btn btn-danger">FAIL</button>
+								</td>
+								<td>orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</td>
+							</tr>
+                          {% endfor %}
+
+						</tbody>
+						<td colspan="5">
+							<div class="container row justify-content-center">
+								<button type="button" class="btn btn-danger">load more</button>
+							</div>
+						</td>
+					</table>
+				</div>
+			</div>
+        </div>
+			<!--end Main -->
+
+{% endblock %}

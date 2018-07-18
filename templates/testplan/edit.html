@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+     {% include "header.html" %}
+    <!-- Main -->
+
+    <div class="section section--main">
+        <div class="container">
+            {% crispy form %}
+            <div class="form-row align-self-center m-1 border-line--min-of">
+
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Дата последнего запуска</th>
+                        <th scope="col" colspan="2">Запустил</th>
+                        <th scope="col">Статус запуска</th>
+                        <th scope="col" class="whith--limit-200">Комментарий</th>
+                    </tr>
+                    {{ plancase.plan }}
+                    </thead>
+                    <tbody>
+                    {% for plancase in plancase_list %}
+                        <tr>
+                            <td scope="row">{{ plancase.test_case.change }}</td>
+                            <td scope="row">{{ plancase.test_case.user }}</td>
+                            <td><img class="prof-img--small" src="{% static "/img/u152.png" %}"></td>
+                            <td scope="row">{{ plancase.test_case.status }}</td>
+                            <td>{{ plancase.test_case.description }} </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <td colspan="5">
+                        <div class="container row justify-content-center">
+                            <button type="button" class="btn btn-danger">load more</button>
+                        </div>
+                    </td>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!--end Main -->
+
+
+{% endblock %}

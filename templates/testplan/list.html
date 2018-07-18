@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     {% include "header.html" %}
+    <!-- Main -->
+    <div class="section section--main">
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="main-search">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class=" btn-outline-secondary form-control mr-sm-2" type="search"
+                               placeholder="Поиск по названию" aria-label="Search">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0 p-1 mar" type="submit">Найти</button>
+                        <a class="text-dark" data-toggle="collapse" href="#collapseExample" role="button"
+                           aria-expanded="false" aria-controls="collapseExample">
+                            Расширенный фильтр
+                        </a>
+                    </form>
+                    <div class="collapse" id="collapseExample">
+                        <div class=" card-body">
+                            <div class="colapce-card">
+                                <span>Дата запуска "с"</span>
+                                <input class="btn btn-outline-secondary" type="date" name="calendar" value="2012-06-01"
+                                       max="2012-06-04" min="2012-05-29">
+                                <span>"по"</span>
+                                <input class="btn btn-outline-secondary" type="date" name="calendar" value="2012-06-01"
+                                       max="2012-06-04" min="2012-05-29">
+                                <span>Ответственный за запуск</span>
+                                <select class="btn btn-outline-secondary" id="u249_input">
+                                    <option value="Сидоров">Сидоров</option>
+                                    <option value="Иванов">Иванов</option>
+                                    <option value="Петров">Петров</option>
+                                </select>
+                                <span>Результат</span>
+                                <select class="btn btn-outline-secondary" id="u248_input">
+                                    <option value="Fail">Fail</option>
+                                    <option value="Pass">Pass</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid  p-0 border-line">
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">Дата последнего запуска</th>
+                                <th scope="col">Запустил</th>
+                                <th scope="col"></th>
+                                <th scope="col">Всего кейсов</th>
+                                <th scope="col">Выполнено</th>
+                                <th scope="col">Провалено</th>
+                                <th scope="col">Результат</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for TestPlan in testplan_list %}
+                                <tr>
+                                    <th scope="row">{{ TestPlan.id }}</th>
+                                    <td><a class="text-dark"
+                                           href="{% url 'plan:view' TestPlan.pk %}">{{ TestPlan.name }}</a></td>
+                                    <td>{{ TestPlan.change }}</td>
+                                    <td>{{ TestPlan.user }}</td>
+                                    <td><img class="prof-img--small" src="{% static "/img/u152.png" %}"></td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td>2</td>
+                                    <td>
+                                        {% if  TestPlan.status == "No_test" %}
+                                            <button type="button"
+                                                    class="btn btn-secondary">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Fail" %}
+                                            <button type="button" class="btn btn-warning">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Done" %}
+                                            <button type="button" class="btn btn-success">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                        {% if  TestPlan.status == "Error" %}
+                                            <button type="button" class="btn btn-danger">{{ TestPlan.status }}</button>
+                                        {% endif %}
+                                    </td>
+                                    <td><a href="{% url 'plan:edit' TestPlan.pk %}"><img class="chenge-img--small"
+                                                                                         src="{% static "img/icon-changelink.svg" %}"></a>
+                                    </td>
+                                    <td><a href="{% url 'plan:new' %}"><img class="chenge-img--small"
+                                                                            src="{% static "img/close.png" %}"></a></td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    {% block pagination %}
+                        {% if is_paginated %}
+                            <div class="pagination">
+                                  <span class="page-links">
+                                    {% if page_obj.number > 2 %}
+                                        <a href="{{ request.path }}?page=1"><<</a>
+                                    {% endif %}
+                                      {% if page_obj.has_previous %}
+                                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><</a>
+                                      {% endif %}
+                                      <span class="page-current">
+                                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                      </span>
+                                      {% if page_obj.has_next %}
+                                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}"> > </a>
+                                      {% endif %}
+                                      {% if page_obj.has_next %}
+                                            <a href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}"> >> </a>
+                                      {% endif %}
+                                  </span>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                </div>
+
+            </div>
+        </div>
+        <!--end Main -->
+{% endblock %}
