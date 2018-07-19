@@ -1,0 +1,5 @@
+Django==2.0.6
+django-crispy-bootstrap==0.1.1.1
+django-crispy-forms==1.7.2
+generic==0.3.1
+pytz==2018.4
