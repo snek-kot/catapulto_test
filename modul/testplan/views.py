@@ -5,8 +5,11 @@ from modul.testplan.forms import PlanNewForm, PlanEditForm
 from django.views import generic
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
+@method_decorator(login_required, name='dispatch')
 class PlanListView(generic.ListView):
     model = TestPlan
     paginate_by = 10
@@ -24,6 +27,7 @@ class PlanListView(generic.ListView):
         return qs
 
 
+@method_decorator(login_required, name='dispatch')
 class DashboardView(generic.ListView):
     model = TestPlan
     template_name = '../templates/testplan/dashboard.html'
@@ -39,6 +43,7 @@ class DashboardView(generic.ListView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class NewCreateView(generic.CreateView):
     model = TestPlan
     form_class = PlanNewForm
@@ -52,6 +57,7 @@ class NewCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
+@method_decorator(login_required, name='dispatch')
 class ViewDetailView(generic.DetailView):
     model = TestPlan
     template_name = 'testplan/view.html'
@@ -63,6 +69,7 @@ class ViewDetailView(generic.DetailView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class EditUpdateView(generic.UpdateView):
     model = TestPlan
     template_name = 'testplan/edit.html'

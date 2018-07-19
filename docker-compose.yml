@@ -1,0 +1,42 @@
+version: '2'
+
+volumes:
+  catapulto_test:
+    external:
+      name: catapulto_test
+
+networks:
+  catapulto_test:
+    external:
+      name: catapulto
+
+services:
+  postgresql:
+    image: postgres:9.5
+    container_name: postgresql
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: catapulto
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      catapulto_test:
+        aliases:
+         - db
+
+  web:
+     container_name: web
+     image: catapulto_test:latest
+     user: root
+     command: python manage.py runserver 0.0.0.0:8000
+     volumes:
+        - .:/home/project
+     depends_on:
+      - postgresql
+     networks:
+      catapulto_test:
+        aliases:
+         - web
+
